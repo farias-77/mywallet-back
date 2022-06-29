@@ -31,7 +31,6 @@ server.post('/sign-up', async (req, res) => {
     const { error } = signUpSchema.validate({ name, email, password });
     const user = await db.collection('users').findOne({ email });
 
-    //verifica se os campos são válidos ou se o usuário já tem um cadastro
     if(joi.isError(error) || user){
         return res.status(422).send('Cadastro inválido, verifique as informações');
     }
