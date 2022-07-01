@@ -8,6 +8,6 @@ import { userExistValidation } from '../middlewares/userExistValidation.js';
 const router = express.Router();
 
 router.post('/accountMovement', authValidation, accountMovementValidation, sessionValidation, userExistValidation, registerMovement);
-router.get('/accountMovement', getMovement)
+router.get('/accountMovement', authValidation, sessionValidation, getMovement);
 
 export default router;
