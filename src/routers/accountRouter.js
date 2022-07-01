@@ -1,9 +1,9 @@
-import { registerMovement, getMovement } from '../controllers/moneyControllers.js';
-import express from 'express';
-import { authValidation } from '../middlewares/authValidation.js';
 import { accountMovementValidation } from '../middlewares/accountMovementValidation.js'
-import { sessionValidation } from '../middlewares/sessionValidation.js';
+import { registerMovement, getMovement } from '../controllers/moneyControllers.js';
 import { userExistValidation } from '../middlewares/userExistValidation.js'; 
+import { sessionValidation } from '../middlewares/sessionValidation.js';
+import { authValidation } from '../middlewares/authValidation.js';
+import express from 'express';
 
 const router = express.Router();
 
