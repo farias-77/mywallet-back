@@ -1,7 +1,5 @@
 import { db } from '../mongo/mongoConfig.js';
-import { v4 as uuid} from 'uuid';
 import bcrypt from 'bcrypt';
-import joi from 'joi';
 
 export async function signUpUser(req, res){
 
@@ -13,27 +11,10 @@ export async function signUpUser(req, res){
 }
 
 export async function signInUser(req, res){
-    const { email, password } = req.body;
 
-    const signInSchema = joi.object({
-        email: joi.string().email().required(),
-        password: joi.string().required() 
-    });
+    const token = res.locals.token;
+    const user = res.locals.user;
 
-    const { error } = signInSchema.validate({ email, password });
-
-    if(joi.isError(error)){
-        res.status(400).send('Login inválido, por favor verifique.');
-    }
-
-    const user = await db.collection('users').findOne({ email });
-
-    if(user && bcrypt.compareSync(password, user.password)){
-        const token = uuid();
-
-        await db.collection('sessions').insertOne({ userId: user._id, token });
-        res.status(201).send(token);
-    }
-    
-    res.status(401).send('Usuário ou senha incorretos');
+    await db.collection('sessions').insertOne({ userId: user._id, token });
+    res.status(200).send(token);  
 }
