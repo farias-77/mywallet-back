@@ -1,4 +1,4 @@
-import { db } from '../mongoConfig.js';
+import { db } from '../mongo/mongoConfig.js';
 import { v4 as uuid} from 'uuid';
 import bcrypt from 'bcrypt';
 import joi from 'joi';

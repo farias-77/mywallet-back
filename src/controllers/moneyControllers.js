@@ -1,4 +1,4 @@
-import { db } from '../mongoConfig.js';
+import { db } from '../mongo/mongoConfig.js';
 import dayjs from 'dayjs';
 import joi from 'joi';
 
